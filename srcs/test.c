@@ -33,15 +33,15 @@ char	*bin_from_char(char *c, int bytes)
 	int				i;
 	int				j;
 	char			*bin;
+	unsigned char	*un_c;
 	unsigned int	num;
-	unsigned char	*unsigned_c;
 
-	unsigned_c = (unsigned char *)c;
-	bin = ft_calloc(sizeof(char), 8 * bytes);
+	un_c = (unsigned char *)c;
+	bin = calloc(sizeof(char), 8 * bytes + 1);
 	i = bytes - 1;
 	while (i >= 0)
 	{
-		num = (unsigned int)unsigned_c[i];
+		num = (unsigned int)un_c[i];
 		j = 7;
 		while (j >= 0)
 		{
@@ -54,7 +54,6 @@ char	*bin_from_char(char *c, int bytes)
 	return (bin);
 }
 
-// UTF-8 で何バイトで表現されるか取得
 int	get_byte(char *c)
 {
 	int	bytes;
@@ -75,23 +74,23 @@ int	get_byte(char *c)
 	return (bytes);
 }
 
-void	set(char **bin)
+int	main(int argc, char **argv)
 {
-	*bin[0] = 'a';
-}
+	char		*c;
+	int			i;
+	char		*bin;
+	int			bytes;
 
-int	main(void)
-{
-	char			*c;
-	int				i;
-	unsigned int	num;
-	unsigned char	*unsigned_c;
-	char			*bin;
-
-	c = "a";
+	if (argc <= 0)
+	{
+		printf("Error %s\n", "NO ARGUMENTS");
+		exit(0);
+	}
+	c = argv[1];
 	i = 0;
-	printf("\n「%s」 \nbytes: %d\n\n", c, get_byte(c));
-	bin = bin_from_char(c, get_byte(c));
+	bytes = get_byte(c);
+	bin = bin_from_char(c, bytes);
 	printf("bin:  %s\n", bin);
 	free(bin);
+	// 11100011 10000001 10000010
 }
