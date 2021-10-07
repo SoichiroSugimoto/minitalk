@@ -47,18 +47,27 @@ void	print_bit(int num)
 void	handler(int sig)
 {
 	static char	c;
+	static int	bytes;
 	static int	num;
+	static int	i;
 
 	c = c << 1;
+	if (sig == SIGUSR1 && num == bytes && i == 0)
+		bytes++;
+	if (sig == SIGUSR2 && num == 0)
+		bytes++;
+	if (sig == SIGUSR2)
+		i = 1;
 	if (sig == SIGUSR1)
 		c += 1;
 	num++;
-	printf("(int)c:  %d\n", (int)c);
+	// printf("[%d] (int)c:  %d  bytes:  %d  i:  %d\n", num, (int)c, bytes, i);
 	if (num == 8)
 	{
 		write(1, &c, 1);
-		write(1, "\nc(binary) = ", 14);
-		print_bit((int)c);
+		num = 0;
+		// write(1, "\nc(binary) = ", 14);
+		// print_bit((int)c);
 	}
 }
 

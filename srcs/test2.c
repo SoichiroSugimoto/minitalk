@@ -3,58 +3,32 @@
 #include <stdlib.h>
 #include "../libft/libft.h"
 
-void	put_prefix(char *bin)
-{
-	*bin = '0';
-	bin++;
-	*bin = 'b';
-	bin++;
-}
-
-char	*bin_to_char(char	*bin, int bytes)
-{
-	char	**c;
-	int		i;
-
-	i = 0;
-	c = (char **)malloc(sizeof(int) * bytes);
-	while (i <= bytes)
-	{
-		*c = (char *)malloc(sizeof(int) * 8);
-	}
-	return (c);
-}
-
-// int	one_byte(char *c)
-// {
-// 	char	one_byte[8];
-// 	int		res;
-
-// 	ft_strlcpy(one_byte, c, 8);
-// 	res = ft_atoi(one_byte);
-// }
-
-int	get_byte(char *bin)
+int	test_len(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (bin[i] == '1')
+	while (str[i])
 		i++;
-	return (i++);
+	return (i);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	char	*bin;
-	int		bytes;
+	int		i;
+	char	*str;
 
-	bin = "11100011 10000001 10111101";
-	// bin = "01100001";
-	bytes = get_byte(bin);
-	printf("Bytes:  %d\n", bytes);
-
-	char test[1] = {0b01100001};
-    write(1, test, 1);
+	i = 0;
+	if (argc <= 1)
+		str = "盗んだバイクで走り出す";
+	else
+		str = argv[1];
+	printf("(ft_)len:  %d\n", ft_strlen(str));
+	printf("len:  %lu\n", strlen(str));
+	while (str[i])
+	{
+		printf("[%d] %c\n", i, str[i]);
+		i++;
+	}
 	printf("\n");
 }
