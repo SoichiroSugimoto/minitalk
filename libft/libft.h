@@ -6,7 +6,7 @@
 /*   By: sosugimo <sosugimo@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/23 11:57:50 by sosugimo          #+#    #+#             */
-/*   Updated: 2021/10/06 14:19:18 by sosugimo         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:31:38 by sosugimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int			all_error_free(char **s1, char **s2);
 int			get_next_line(int fd, char **line);
 int			error_free(char **buf);
 void		ft_bzero(void *s, size_t n);
+void		*ft_calloc(size_t count, size_t size);
 
 #endif
