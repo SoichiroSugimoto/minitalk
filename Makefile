@@ -1,4 +1,6 @@
-NAME		= client
+NAME		= minitalk
+
+CLIENT		= client
 
 SERVER		= server
 
@@ -20,9 +22,11 @@ CFLAGS		= -Wall -Wextra -Werror
 
 all : $(NAME)
 
-$(NAME) : $(OBJS_CL)
+$(NAME) : $(CLIENT) $(SERVER)
+
+$(CLIENT) : $(OBJS_CL)
 	make -C libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS_CL) $(LIBFT) -L ./libft -lft
+	$(CC) $(CFLAGS) -o $(CLIENT) $(OBJS_CL) $(LIBFT) -L ./libft -lft
 
 $(SERVER) : $(OBJS_SE)
 	make -C libft
@@ -37,7 +41,7 @@ clean :
 	make clean -C libft
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(CLIENT)
 	rm -f $(SERVER)
 	make fclean -C libft
 
