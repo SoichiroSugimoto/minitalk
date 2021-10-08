@@ -1,23 +1,16 @@
-#include <signal.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sosugimo <sosugimo@student.42tokyo.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/08 16:03:41 by sosugimo          #+#    #+#             */
+/*   Updated: 2021/10/08 16:03:42 by sosugimo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//void	handler(int sig)
-//{
-//	write(1, "done\n", 5);
-//}
-
-//void	handler1(int sig)
-//{
-//	sleep(10);
-//	write(1, "done1\n", 6);
-//}
-
-// SIGUSR1 → 1
-// SIGUSR2 → 0
-// 01110010
-// 21112212
+#include "../includes/minitalk.h"
 
 static int	ft_abs(int n)
 {
@@ -61,13 +54,10 @@ void	handler(int sig)
 	if (sig == SIGUSR1)
 		c += 1;
 	num++;
-	// printf("[%d] (int)c:  %d  bytes:  %d  i:  %d\n", num, (int)c, bytes, i);
 	if (num == 8)
 	{
 		write(1, &c, 1);
 		num = 0;
-		// write(1, "\nc(binary) = ", 14);
-		// print_bit((int)c);
 	}
 }
 
@@ -75,14 +65,14 @@ int	main(void)
 {
 	struct sigaction	sa;
 
-	sigemptyset(&sa.sa_mask); // mask 初期化
-	sigaddset(&sa.sa_mask, SIGUSR1); // maskの設定
+	sigemptyset(&sa.sa_mask);
+	sigaddset(&sa.sa_mask, SIGUSR1);
 	sigaddset(&sa.sa_mask, SIGUSR2);
 	sa.sa_handler = handler;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	printf("%d\n", getpid());
-	while(1)
-		pause(); // signalが来るまで待機
+	while (1)
+		pause();
 	return (0);
 }
