@@ -6,7 +6,7 @@
 /*   By: sosugimo <sosugimo@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:03:13 by sosugimo          #+#    #+#             */
-/*   Updated: 2021/10/08 16:03:14 by sosugimo         ###   ########.fr       */
+/*   Updated: 2021/10/09 17:03:41 by sosugimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ void	error_deal(int argc, char *pid)
 	if (argc >= 4)
 	{
 		ft_putstr_fd(ERR_ARG_LA, 1);
-		exit(0);
-	}
-	if (ft_strlen(pid) != 5)
-	{
-		ft_putstr_fd(ERR_ARG_FOM, 1);
 		exit(0);
 	}
 	if (!('0' <= *pid && *pid <= '9'))
