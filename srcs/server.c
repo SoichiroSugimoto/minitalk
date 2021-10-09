@@ -6,36 +6,11 @@
 /*   By: sosugimo <sosugimo@student.42tokyo.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:03:41 by sosugimo          #+#    #+#             */
-/*   Updated: 2021/10/08 16:03:42 by sosugimo         ###   ########.fr       */
+/*   Updated: 2021/10/09 08:36:08 by sosugimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
-
-static int	ft_abs(int n)
-{
-	if (n < 0)
-		n *= -1;
-	return (n);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n / 10)
-		ft_putnbr_fd(n / 10, fd);
-	else
-		write(fd, "-", n < 0);
-	write(fd, &"0123456789"[ft_abs(n % 10)], 1);
-}
-
-void	print_bit(int num)
-{
-	if ((num / 2) == 0)
-		return ;
-	num /= 2;
-	print_bit(num);
-	ft_putnbr_fd(num % 2, 1);
-}
 
 void	handler(int sig)
 {
