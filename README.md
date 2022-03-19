@@ -11,9 +11,10 @@
 None
 
 #### Compile<br>
-1) `$ make` in root dir to generate libftprintf.a<br>
-2) `$ gcc libftprintf.a main.c` to generate a.out<br>
-3) `$ ./a.out` to implement program
+*this program needs two prompts
+1) `$ make` in root dir to generate execution files; client and server.<br>
+2) `./server` to generate and output PID then make prompt wait for sent string.<br>
+3) `./client [PID] [string]` to send string to server prompt
 <br>
 <br>
 <br>
